@@ -28,11 +28,9 @@ function createToy(newToy) {
 }
 
 document.body.addEventListener('click', function (e) {
-  console.log('Clicked!')
   if (e.target.innerText === 'Like <3') {
-    console.log('Like button!!!!!')
     e.target.dataset.likes = parseInt(e.target.dataset.likes) + 1
-    fetch(`http://localhost:3000/toys/1`, {
+    fetch(`http://localhost:3000/toys/${e.target.id}`, {
       method: "PATCH",
       headers: {
       "Content-Type" : "application/json",
@@ -42,7 +40,6 @@ document.body.addEventListener('click', function (e) {
         "likes": `${e.target.dataset.likes}`
       })
     })
-
     e.target.parentNode.querySelector('p').innerText = `${e.target.dataset.likes} Likes`
   }
 })
